@@ -5,7 +5,7 @@ use Think\Controller;
 	
 	public  function index (){
 		$blog=$this->blog=D('blog')->getBlogs();		
-		//p(D('blog'));
+		//p(D('blog'));//
 		$this->display();
 	}
 	
