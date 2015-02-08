@@ -1,0 +1,41 @@
+<layout name="layout" />
+    <div id="content" class="col-mod">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><i class="glyphicon glyphicon-header"></i> 权 限 列 表</h4>
+				</div>
+
+				<div class="panel-body">
+					<form action="{:U('Attr/runattr')}" method="post">
+					<table class="table table-hover table-bordered table-condensed">
+						<tr>
+							<td>ID</td>
+							<td>名称</td>
+							<td>颜色</td>
+							<td>操作</td>
+						</tr>
+						<volist name='attr' id="vo">
+						<tr>
+							<td>{$vo['id']}</td>
+							<td>{$vo['name']}</td>
+							<td>
+								<div style="width: 20px; height: 20px; background:{$vo['color']} ;"></div></td>
+							<td>
+								<div class="btn-group btn-group-xs">
+									<a href="{:U('Attr/edit',array('id'=>$vo['id']))}" class="btn btn-warning">修改</a>
+									<a href="{:U('Attr/delattr',array('id'=>$vo['id']))}" class="btn btn-danger">删除</a>
+								</div>
+
+							</td>
+						</tr>
+
+						</volist>
+						<tr>
+							<td colspan='7'>{$page}</td>
+						</tr>
+					</table>
+					</form>
+				</div>
+
+			</div>
+		</div>

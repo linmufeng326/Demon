@@ -1,0 +1,78 @@
+<layout name="layout" />
+ <div id="content" class="col-sm-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><i class="glyphicon glyphicon-header"></i> 添	加	栏     目</h4>
+				</div>
+
+				<div class="panel-body">
+					<form class="form-horizontal" action="{:U('Cate/runCate')}" method='post'>
+						<div class="form-group">
+							<label for="ruleTitle" class="col-sm-2 control-label">栏目名称:</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" placeholder="栏目名称" name="name" id="ruleTitle" />
+							</div>
+							<label class="col-sm-2 control-label"></label>
+						</div>						
+
+						<div class="form-group">
+							<label for="condition" class="col-sm-2 control-label">排序</label>
+							<div class="col-sm-5">
+								<input type="text" class="form-control" placeholder="排序" name="sort" id="condition" />
+								
+							</div>
+							<label class="col-sm-2 control-label"></label>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">是否显示:</label>
+							<div class="btn-group col-sm-5" data-toggle="buttons">
+								<label class="btn btn-primary">
+									<input type="radio"  name="" id="status" checked="checked" value="1" />启用
+								</label>
+
+								<label class="btn btn-danger">
+									<input type="radio"  name="" id="status" value="0" />禁用
+								</label>
+							</div>
+							<label class="col-sm-2 control-label"></label>
+						</div>
+
+						<div class="form-group">
+							<label for="pid" class="col-sm-2 control-label" name="pid">所属栏目:</label>
+							<div class="col-sm-3">
+                            <?php if(isset($_GET['pid']) && $_GET['pid'])
+                            { ?>
+
+								<select class="form-control" name="pid">
+									 <?php foreach ($cates as $k => $v):?>
+										<option value="<?php echo $v['id'];?>"><?php echo str_repeat('&nbsp;', $v['level'] * 2) .$v['html'] . $v['name']; ?></option>
+									<?php endforeach; ?>
+								</select>
+								<?php } else {?>
+                                
+                                <select class="form-control" name="pid">
+									<option value="0">===顶级栏目===</option>
+									 <?php foreach ($cates as $k => $v):?>
+										<option value="<?php echo $v['id'];?>"><?php echo str_repeat('&nbsp;', $v['level'] * 2) .$v['html'] . $v['name']; ?></option>
+									<?php endforeach; ?>
+								</select>
+                                <?php }?>
+							</div>
+							<label class="col-sm-2 control-label"></label>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-5">
+								<button type="submit" class="btn btn-success btn-add">添加</button>
+								
+							</div>
+							
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>

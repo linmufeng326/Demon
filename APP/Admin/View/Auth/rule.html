@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__Css/public.css" />
+	</head>
+	<body>
+		<form action="{:U('Cate/Catesort')}" method="post">
+<table class="Tab">
+	<tr>
+			<th colspan="5" class="cen">权限列表</th>		
+		</tr>
+	<tr>
+		<td>ID</td>
+		<td>规则标识</td>
+		<td>规则简述</td>
+		<td>排序</td>
+		<td>操作</td>
+	</tr>
+	<foreach name='rule' item='v'>
+	<tr>
+		<td>{$v.id}</td>
+		<td>{$v.name}</td>
+		<td>{$v.title}</td>
+		<td></td>
+		<td>
+			[<a href="">修改</a>]
+			[<a href="">删除</a>]
+		</td>
+	</tr>
+	</foreach>
+	<tr>
+			<td colspan="5" class="cen"><input type="submit" value="auth" class="cen"></td>		
+		</tr>
+</table>
+</form>
+	</body>
+</html>

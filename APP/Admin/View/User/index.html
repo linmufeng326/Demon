@@ -1,0 +1,122 @@
+<layout name="layout" />
+<style>
+.rows{ height:40px; line-height:40px;}
+.zd a{ height:40px; line-height:50px; display:block; float:left;}
+.zd { height:40px; line-height:20px; display:block; float:left;}
+.c_l{ float:left;}
+.c_r{ float:right;}
+.jibie{float:left;height:40px; line-height:40px;}
+</style>
+    <div id="content" class="col-mod">
+			<div class="panel panel-archon">
+				<div class="panel-heading">
+					<h4 class="panel-title"><i class="glyphicon glyphicon-header"></i> 栏目 列 表</h4>
+				</div>
+
+				<div class="panel-body">
+					<form action="{:U('Cate/Catesort')}" method="post">
+					<table class="table table-hover table-bordered">
+                    <thead>
+						<tr>
+                            <td class="visible-lg">#</td>
+                            <td class="visible-lg">ID</td>
+							<td>排序</td>
+							<td>名称</td>
+							<td>级别</td>
+							<td>操作</td>
+						</tr>
+                        </thead>
+						<volist name='cate' id="vo">
+						<tr level="{$vo['level']}">
+                         <td ><input type="checkbox" id="inlineCheckbox2" value="option2"></td>
+                         <td >{$vo['id']}{$vo['pid']}</td>
+							<td>
+							<div class="col-lg-4">
+								<input type="text" class="form-control" placeholder="排序" name="{$vo['id']}" id="ruleTitle" value="{$vo['sort']}"/>
+							</div>
+                        </td>
+							<td>
+<a href="" class="zd">[-]</a>
+<div  class="rows">
+<div class="jibie">{$vo['html']}</div>
+								 <div class="col-lg-5 c_l">
+													<input type="text" class="form-control" placeholder="" value="{$vo['name']}">
+												</div>
+                                                </div>
+                           </td>
+							<td>{$vo['level']}</td>
+
+							<td>
+								<div class="btn-group btn-group-xs">
+									<a href="{:U('Cate/addCate',array('pid'=>$vo['id']))}" class="btn btn-sm btn-info mhm">添加子栏目</a>
+									<a href="{:U('Cate/edit',array('id'=>$vo['id'],'pid'=>$vo['pid']))}" class="btn btn-warning">修改</a>
+									<a href="{:U('Cate/delCate',array('id'=>$vo['id']))}" class="btn btn-danger">删除</a>
+								</div>
+
+							</td>
+						</tr>
+
+						</volist>
+						<tr>
+							<td colspan='7'>
+								<div class="form-group">
+							<label class="col-sm-5 control-label"></label>
+							<div class="col-sm-5">
+								<button type="submit" class="btn btn-success btn-add">提交</button>
+								
+							</div>
+							
+						</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan='7'>{$page}</td>
+						</tr>
+					</table>
+					</form>
+				</div>
+
+			</div>
+
+		</div>
+<script src="__JS__jquery-1.8.3.min.js"></script> 
+<script>
+// 选出所有的a标签绑定click事件
+$(".zd").click(function(){
+	// 先取出所在的tr
+	var tr = $(this).parent().parent();
+	// 取出当前行的level值
+	var level = parseInt(tr.attr("level"));
+	if($(this).html() == '[+]')
+	{
+			
+		// 把所有的子类折叠起来
+		// 取出后面所有的TR
+		tr.nextAll("tr").each(function(k, v){
+			if(parseInt($(this).attr("level")) == level+1)
+			{
+				$(this).show();
+			}
+			else
+				return false; // 直到一个LEVEL和当前LEVEL值相同的TR就退出循环
+		});
+		$(this).html('[-]');
+	}
+	else
+	{
+		// 把所有的子类折叠起来
+		// 取出后面所有的TR
+		tr.nextAll("tr").each(function(k, v){
+			$(this).find(".zd").html("[+]");
+			if(parseInt($(this).attr("level")) > level)
+			{
+				$(this).hide();
+			}
+			else
+				return false; // 直到一个LEVEL和当前LEVEL值相同的TR就退出循环
+		});
+		
+		$(this).html('[+]');
+	}
+});
+</script>

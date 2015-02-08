@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="__PUBLIC__Css/public.css" />
+	</head>
+	<body>
+		
+<table class="Tab">
+	<tr>
+			<th colspan="3" class="cen">栏目列表</th>
+			<th  colspan="2">
+            <form action="{:U('Role/index')}/OR/<?php echo $_GET['wh']; ?>" method="get">
+            <input name="wh" type="text" value="<?php echo $_GET['wh']; ?>"><input name="" type="submit" value="搜索">
+            </form>
+            </th>
+		</tr>
+         <form action="" method="post">
+	<tr>
+		<td><a href="__ACTION__/OR/<?php if ($_GET['OR']=='asc') echo 'desc';else echo 'asc';?>">ID</a></td>
+		<td>名称</td>
+		<td>权限</td>
+		<td>操作</td>
+	</tr>
+        <volist name="list" id="vo">
+	<tr>
+   
+		<td>{$vo.id}</td>
+		<td>{$vo.role_name}</td>
+		<td>{$vo.action_list}</td>
+		<td>
+			[<a href="{:U('Role/edit',array('id'=>$vo['id']))}">修改</a>]
+			[<a href="{:U('Role/del',array('id'=>$vo['id']))}">删除</a>]
+		</td>
+	</tr>
+            </volist>
+</form>
+	<tr>
+			<td colspan="5" class="cen">{$page}</td>		
+		</tr>
+        
+</table>
+
+	</body>
+</html>

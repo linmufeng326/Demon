@@ -1,0 +1,63 @@
+<layout name="layout" />
+ <div id="content" class="col-mod">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><i class="glyphicon glyphicon-header"></i>系统基本信息</h4>
+				</div>
+
+				<div class="panel-body">
+					
+					<table class="table table-hover table-bordered table-condensed">
+						 <tr bgcolor="#EEF4EA">
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td>软件版本信息：</td>
+    <td>Demon cms 2014 1.0</td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td>系统信息 </td>
+    <td>{$sysdata['sysos']}</td>
+  </tr>
+    <tr bgcolor="#FFFFFF">
+    <td>php版本 </td>
+    <td>{$sysdata['sysversion']}</td>
+  </tr>
+      <tr bgcolor="#FFFFFF">
+    <td>MySql版本 </td>
+    <php>
+	$system_info_mysql = M()->query("select version() as v;");
+	</php>
+    <td>{$system_info_mysql.0.v}</td>
+  </tr>
+
+   <tr bgcolor="#FFFFFF">
+    <td> GD库版本 </td>
+    <td>{$sysdata['gdinfo']}</td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td> FreeType </td>
+    <td>{$sysdata['freetype']}</td>
+  </tr>
+    <tr bgcolor="#FFFFFF">
+    <td> 远程文件获取 </td>
+    <td>{$sysdata['allowurl']}</td>
+  </tr>
+   <tr bgcolor="#FFFFFF">
+    <td> 最大上传限制</td>
+    <td>{$sysdata['max_upload']}</td>
+  </tr>
+  <tr bgcolor="#FFFFFF">
+    <td> 最大执行时间</td>
+    <td>{$sysdata['max_ex_time']}</td>
+  </tr>
+   <tr bgcolor="#FFFFFF">
+    <td> 服务器时间</td>
+    <td>{$sysdata['systemtime']}</td>
+  </tr>
+					</table>
+					
+				</div>
+
+			</div>
+
+		</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="__PUBLIC__Css/public.css" />
+</head>
+
+<body>
+	<form action="{:U('Role/editrun')}" method="post">
+	<table class="Tab">
+		<tr>
+			<th colspan="2" class="cen">添加角色</th>		
+		</tr>
+		<tr>
+			<td align="right">角色名称:</td>
+            <input type="hidden" name="id" value="<?php echo $info['id']; ?>" />
+			<td><input type="text" name="role_name" value="<?php echo $info['role_name']; ?>"></td>
+		</tr>
+		<tr>
+			<td align="righta">权限:</td>
+			<td>
+		<?php $pre=explode(',',$info['action_list']);
+		 foreach ($power as $k => $v):
+		 if(in_array($k,$pre))
+		 $checked=' checked="checked" ';
+		 else
+		 $checked='';		   
+		?>
+		<input type="checkbox" <?php echo $checked;?> name="action_list[]" value="<?php echo $k;?>">&nbsp;<?php echo $v;?>
+		<?php endforeach; ?>
+		  </td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				
+				<input type="submit" value="保存" class="bt3" />
+			</td>
+			
+		</tr>
+	</table>
+	</form>
+</body>
+</html>

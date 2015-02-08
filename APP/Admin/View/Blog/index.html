@@ -1,0 +1,52 @@
+<layout name="layout" />
+    <div id="content" class="col-mod">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">博文列 表</h4>
+				</div>
+
+				<div class="panel-body">
+					<table class="table table-hover table-bordered table-condensed">
+						<tr>
+							<td>ID</td>
+							<td>标题</td>
+							<td>所属栏目</td>
+							<td>点击次数</td>
+							<td>发布时间</td>
+							<td>操作</td>
+						</tr>
+						<volist name='blog' id="vo">
+						<tr>
+							<td>{$vo['id']}</td>
+							<td>{$vo['title']}
+							<foreach name='vo.attr' item='value'>
+								<strong style='color:{$value.color};padding:0 5px;'>[{$value.name}]</strong>
+							</foreach>
+							</td>
+							<td>{$vo['cate']}</td>
+							<td>{$vo['click']}</td>
+							<td>{$vo.time|date="Y-m-d H:i:s",###}</td>
+                        <td>
+                        	<if condition='ACTION_NAME eq "index"'>  
+								<div class="btn-group btn-group-xs">
+									<a href="{:U('blog/edit',array('id'=>$vo['id']))}" class="btn btn-warning">修改</a>
+									<a href="{:U('blog/trach',array('id'=>$vo['id'],'type' => 1))}" class="btn btn-danger">删除</a>
+								</div>
+								<else />
+								<div class="btn-group btn-group-xs">
+									<a href="{:U('blog/trach',array('id'=>$vo['id'],'type' => 0))}" class="btn btn-warning">还原</a>
+									<a href="{:U('blog/tracher',array('id'=>$vo['id']))}" class="btn btn-danger">彻底删除</a>
+								</div>
+								</if>
+							</td>
+						</tr>
+
+						</volist>
+						<tr>
+							<td colspan='7'></td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+		</div>
